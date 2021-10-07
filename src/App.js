@@ -1,7 +1,19 @@
+import React, { useState, useEffect } from "react";
+
+import { getRoutes } from './api/routes';
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getRoutes().then((data) => setData(data));
+  }, []);
+
+  console.log('data', data);
+
   return (
     <div className="App">
       <header className="App-header">
