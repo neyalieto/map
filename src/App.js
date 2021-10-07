@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useFetchRoutes } from './hooks/useFetchRoutes';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
 import './App.css';
 import 'leaflet/dist/leaflet.css';
@@ -20,10 +20,14 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 function App() {
   const data = useFetchRoutes();
+  const limeOptions = { color: 'lime' }
+
+
+
 
   console.log('data', data);
 
-  if(!data) return null;
+  if (!data) return null;
 
   return (
 
@@ -33,16 +37,20 @@ function App() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {data.map(item => (
+
         <Marker position={item.coordinates} key={item.id}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
       ))}
+
+      <Polyline pathOptions={limeOptions} positions={data.map(item => item.coordinates)} />
+
     </MapContainer>
   );
 
-  
+
 }
 
 export default App;
