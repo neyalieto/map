@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { getRoutes } from './api/routes';
+import { useFetchRoutes } from './hooks/useFetchRoutes';
 
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    getRoutes().then((data) => setData(data));
-  }, []);
+  const data = useFetchRoutes();
 
   console.log('data', data);
 
