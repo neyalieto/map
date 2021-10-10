@@ -1,12 +1,12 @@
 import React from 'react';
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from 'react-leaflet';
+import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
+
+import { API_KEY } from '../config/googleMaps';
 
 const Map = ({ children, ...props }) => (
   <MapContainer {...props}>
-    <TileLayer
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-    />
+    <ReactLeafletGoogleLayer apiKey={API_KEY} />
     {children}
   </MapContainer>
 );
