@@ -10,7 +10,7 @@ import 'leaflet/dist/leaflet.css';
 
 function App() {
   const data = useFetchRoutes();
-  const limeOptions = { color: 'lime' };
+  const limeOptions = { color: '#058fff' };
 
   if (!data) return null;
 
