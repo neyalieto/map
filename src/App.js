@@ -1,6 +1,7 @@
 import React from 'react';
-import { MapContainer, TileLayer, Popup, Polyline } from 'react-leaflet';
+import { Popup, Polyline } from 'react-leaflet';
 
+import Map from './components/Map';
 import Marker from './components/Marker';
 import { useFetchRoutes } from './hooks/useFetchRoutes';
 
@@ -14,11 +15,7 @@ function App() {
   if (!data) return null;
 
   return (
-    <MapContainer center={[41.390205, 2.154007]} zoom={13} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <Map center={[41.390205, 2.154007]} zoom={13}>
       {data.map(item => (
         <Marker position={item.coordinates} key={item.id}>
           <Popup>
@@ -28,7 +25,7 @@ function App() {
       ))}
 
       <Polyline pathOptions={limeOptions} positions={data.map(item => item.coordinates)} />
-    </MapContainer>
+    </Map>
   );
 }
 

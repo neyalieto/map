@@ -17,4 +17,4 @@ const Marker = ({ position, children }) => (
     </MarkerBase>
 );
 
-export  default  Marker;
+export default Marker;
