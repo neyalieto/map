@@ -14,8 +14,10 @@ function App() {
 
   if (!data) return null;
 
+  const points = data.map(item => item.coordinates);
+
   return (
-    <Map center={[41.390205, 2.154007]} zoom={13}>
+    <Map bounds={points}>
       {data.map(item => (
         <Marker position={item.coordinates} key={item.id}>
           <Popup>
@@ -24,7 +26,7 @@ function App() {
         </Marker>
       ))}
 
-      <Polyline pathOptions={limeOptions} positions={data.map(item => item.coordinates)} />
+      <Polyline pathOptions={limeOptions} positions={points} />
     </Map>
   );
 }
