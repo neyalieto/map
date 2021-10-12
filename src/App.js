@@ -21,7 +21,7 @@ function App() {
   return (
     <Map bounds={primary}>
       {data.primary.map(item => (
-        <Marker position={item.coordinates} key={item.id} >
+        <Marker position={item.coordinates} key={item.id} slug = {item.slug}>
           <Tooltip country = {item.name} >     
           </Tooltip>
         </Marker>

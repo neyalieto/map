@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useCallback} from 'react';
 import { Marker as MarkerBase } from 'react-leaflet';
 import L from 'leaflet';
 
@@ -14,14 +14,16 @@ const MarkerIcon = L.icon({
     shadowAnchor: [12, 6],
 });
 
-const Marker = ({ position, children }) => (
-    <MarkerBase position={position} icon={MarkerIcon} eventHandlers={{
-        click: () => {
-            window.location.hash = {link};
-        },
-      }} >
-        {children}
-    </MarkerBase>
-);
+const Marker = ({ position, children, slug }) => {
+    const handleClick = useCallback(
+     () => {
+        window.location.hash = slug;
+    }, [slug])
+    return (
+        <MarkerBase position={position} icon={MarkerIcon} eventHandlers={{ click: handleClick }} >
+            {children}
+        </MarkerBase>
+    );
+};
 
 export default Marker;
