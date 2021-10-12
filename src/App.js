@@ -1,32 +1,34 @@
 import React from 'react';
-import { Popup, Polyline } from 'react-leaflet';
+import { Popup } from 'react-leaflet';
 
 import Map from './components/Map';
 import Marker from './components/Marker';
 import useRouteData from "./hooks/useRouteData";
+import Polyline from './components/Polyline';
+import Tooltip from './components/Tooltip';
 
 import './App.css';
 import 'leaflet/dist/leaflet.css';
 
 function App() {
   const data = useRouteData();
-  const limeOptions = { color: '#058fff' };
 
   if (!data) return null;
 
-  const points = data.primary.map(item => item.coordinates);
+  const primary = data.primary.map(item => item.coordinates);
+  const secondary = data.secondary.map(item => item.coordinates);
 
   return (
-    <Map bounds={points}>
+    <Map bounds={primary}>
       {data.primary.map(item => (
         <Marker position={item.coordinates} key={item.id}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          <Tooltip country = {item.name} >     
+          </Tooltip>
         </Marker>
       ))}
 
-      <Polyline pathOptions={limeOptions} positions={points} />
+      <Polyline positions={primary} />
+      <Polyline positions={secondary} variant="secondary" />
     </Map>
   );
 }
