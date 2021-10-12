@@ -15,7 +15,11 @@ const MarkerIcon = L.icon({
 });
 
 const Marker = ({ position, children }) => (
-    <MarkerBase position={position} icon={MarkerIcon}>
+    <MarkerBase position={position} icon={MarkerIcon} eventHandlers={{
+        click: () => {
+            window.location.hash = {link};
+        },
+      }} >
         {children}
     </MarkerBase>
 );
