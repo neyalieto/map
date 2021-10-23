@@ -1,5 +1,6 @@
-import routeMockData from "../mockData/route";
+import rawData from '../mockData/rawData';
+import normalizeRouteData from '../utils/normalizeRouteData';
 
-const useRouteData = () => routeMockData;
+const useRouteData = () => normalizeRouteData(rawData);
 
 export default useRouteData;

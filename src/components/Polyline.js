@@ -3,7 +3,7 @@ import { Polyline as PolylineBase } from 'react-leaflet';
 
 const pathOptions = {
     primary: { color: '#058fff' },
-    secondary: { color: '#ccbb99' },
+    secondary: { color: '#f9a824' },
 };
 
 const Polyline = ({ positions, variant = 'primary' }) => (

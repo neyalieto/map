@@ -1,5 +1,4 @@
 import React from 'react';
-import { Popup } from 'react-leaflet';
 
 import Map from './components/Map';
 import Marker from './components/Marker';
@@ -13,22 +12,18 @@ import 'leaflet/dist/leaflet.css';
 function App() {
   const data = useRouteData();
 
-  if (!data) return null;
-
-  const primary = data.primary.map(item => item.coordinates);
-  const secondary = data.secondary.map(item => item.coordinates);
-
   return (
-    <Map bounds={primary}>
+    <Map bounds={data.bounds}>
       {data.primary.map(item => (
-        <Marker position={item.coordinates} key={item.id} slug = {item.slug}>
-          <Tooltip country = {item.name} >     
-          </Tooltip>
+        <Marker position={item.coordinates} slug={item.slug} key={item.id}>
+          <Tooltip>{item.name}</Tooltip>
         </Marker>
       ))}
 
-      <Polyline positions={primary} />
-      <Polyline positions={secondary} variant="secondary" />
+      <Polyline positions={data.primary.map(item => item.coordinates)} />
+      {data.secondary.map((positions, index) => (
+        <Polyline positions={positions} variant="secondary" key={index} />
+      ))}
     </Map>
   );
 }
