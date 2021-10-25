@@ -1,31 +1,14 @@
 import React from 'react';
 
-import Map from './components/Map';
-import Marker from './components/Marker';
-import useRouteData from "./hooks/useRouteData";
-import Polyline from './components/Polyline';
-import Tooltip from './components/Tooltip';
+import Route from './features/Route';
 
 import './App.css';
 import 'leaflet/dist/leaflet.css';
 
-function App() {
-  const data = useRouteData();
+function App({ mode, rawData }) {
+  if (mode === 'route') return <Route rawData={rawData} />
 
-  return (
-    <Map bounds={data.bounds}>
-      {data.primary.map(item => (
-        <Marker position={item.coordinates} slug={item.slug} key={item.id}>
-          <Tooltip>{item.name}</Tooltip>
-        </Marker>
-      ))}
-
-      <Polyline positions={data.primary.map(item => item.coordinates)} />
-      {data.secondary.map((positions, index) => (
-        <Polyline positions={positions} variant="secondary" key={index} />
-      ))}
-    </Map>
-  );
+  return null;
 }
 
 export default App;
