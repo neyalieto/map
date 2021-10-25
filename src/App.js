@@ -5,8 +5,8 @@ import Route from './features/Route';
 import './App.css';
 import 'leaflet/dist/leaflet.css';
 
-function App({ mode, rawData }) {
-  if (mode === 'route') return <Route rawData={rawData} />
+function App({ mode, language, data }) {
+  if (mode === 'route') return <Route language={language} data={data} />
 
   return null;
 }

@@ -8,4 +8,4 @@ export default {
   title: 'Route',
 }
 
-export const Route = () => <App mode="route" rawData={routeData} />;
+export const Route = () => <App mode="route" language="en" data={routeData} />;

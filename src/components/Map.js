@@ -4,9 +4,9 @@ import ReactLeafletGoogleLayer from 'react-leaflet-google-layer';
 
 import { API_KEY } from '../config/googleMaps';
 
-const Map = ({ children, ...props }) => (
+const Map = ({ language, children, ...props }) => (
   <MapContainer {...props}>
-    <ReactLeafletGoogleLayer apiKey={API_KEY} />
+    <ReactLeafletGoogleLayer apiKey={API_KEY} googleMapsLoaderConf={{ language }} />
     {children}
   </MapContainer>
 );

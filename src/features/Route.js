@@ -6,19 +6,19 @@ import useRouteData from '../hooks/useRouteData';
 import Polyline from '../components/Polyline';
 import Tooltip from '../components/Tooltip';
 
-function Route({ rawData }) {
-  const data = useRouteData(rawData);
+function Route({ language, data }) {
+  const { bounds, primary, secondary } = useRouteData(data);
 
   return (
-    <Map bounds={data.bounds}>
-      {data.primary.map(item => (
+    <Map language={language} bounds={bounds}>
+      {primary.map(item => (
         <Marker position={item.coordinates} slug={item.slug} key={item.id}>
           <Tooltip>{item.name}</Tooltip>
         </Marker>
       ))}
 
-      {data.primary.length > 1 && <Polyline positions={data.primary.map(item => item.coordinates)} />}
-      {data.secondary.map((positions, index) => (
+      {primary.length > 1 && <Polyline positions={primary.map(item => item.coordinates)} />}
+      {secondary.map((positions, index) => (
         <Polyline positions={positions} variant="secondary" key={index} />
       ))}
     </Map>
